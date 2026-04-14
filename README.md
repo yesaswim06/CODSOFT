@@ -77,8 +77,7 @@ python3 sales_prediction.py
 ### Deactivate venv when done
 ```bash
 deactivate
----
-
+```
 ## 👤 Author
 
 **MUDIGONDA.NAGA YESASWI BHARGAV**  
