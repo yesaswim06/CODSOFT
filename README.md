@@ -49,20 +49,34 @@ pip install pandas numpy matplotlib seaborn scikit-learn
 
 ## 🚀 How to Run
 
+`### Setup Virtual Environment (first time only)
 ```bash
-# Task 1 - Titanic
-cd Task1_Titanic
-python titanic_survival_prediction.py
-
-# Task 3 - Iris
-cd Task3_Iris
-python iris_classification.py
-
-# Task 4 - Sales
-cd Task4_Sales
-python sales_prediction.py
+python3 -m venv venv
+source venv/bin/activate
+pip install pandas numpy matplotlib seaborn scikit-learn
 ```
 
+### Run Task 1 - Titanic
+```bash
+cd Task1_Titanic
+python3 titanic_survival_prediction.py
+```
+
+### Run Task 2 - Iris
+```bash
+cd Task2_Iris
+python3 iris_classification.py
+```
+
+### Run Task 3 - Sales
+```bash
+cd Task3_Sales
+python3 sales_prediction.py
+```
+
+### Deactivate venv when done
+```bash
+deactivate
 ---
 
 ## 👤 Author
