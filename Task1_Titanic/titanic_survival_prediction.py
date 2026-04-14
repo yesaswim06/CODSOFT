@@ -139,13 +139,33 @@ for col in features:
     else:
         df_model[col].fillna(df_model[col].mode()[0], inplace=True)
 
-# Encode categorical
+# Drop rows where target (Survived) is missing
+df_model.dropna(subset=[surv_col], inplace=True)
+
+# Fill any remaining NaN with median/mode
+for col in features:
+    if df_model[col].isnull().sum() > 0:
+        if df_model[col].dtype in [np.float64, np.int64]:
+            df_model[col].fillna(df_model[col].median(), inplace=True)
+        else:
+            df_model[col].fillna(df_model[col].mode()[0], inplace=True)
+
+# Encode ALL categorical columns - force convert everything to numeric
 le = LabelEncoder()
 for col in features:
-    if df_model[col].dtype == object:
+    if df_model[col].dtype == object or df_model[col].apply(lambda x: isinstance(x, str)).any():
         df_model[col] = le.fit_transform(df_model[col].astype(str))
+    df_model[col] = pd.to_numeric(df_model[col], errors='coerce')
+
+# Final check - drop any remaining NaN rows
+df_model.dropna(inplace=True)
+
+# Convert everything to float to be safe
+for col in features:
+    df_model[col] = df_model[col].astype(float)
 
 print(f"✅ Missing values remaining: {df_model.isnull().sum().sum()}")
+print(f"✅ Clean dataset size: {len(df_model)} rows")
 
 # ─────────────────────────────────────────────────────────────
 # STEP 4: SPLIT & TRAIN

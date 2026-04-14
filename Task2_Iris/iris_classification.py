@@ -215,5 +215,5 @@ for s, p in zip(samples, preds):
           f"  →  🌸 {species_names[p].upper()}")
 
 print("\n" + "="*60)
-print("   TASK 3 COMPLETE ✅")
+print("   TASK 2 COMPLETE ✅")
 print("="*60)
